@@ -153,15 +153,19 @@ class Game {
     this._score = 0;
     this._status = 'playing';
 
-    this._addRandomTile();
-    this._addRandomTile();
+    const isEmpty = this._state.flat().every((v) => v === 0);
 
-    // snapshot pierwszego startu (wymóg: Restart ma przywracać first-start)
+    if (isEmpty) {
+      this._addRandomTile();
+      this._addRandomTile();
+    }
+
     if (!this._firstStartSaved) {
       this._initialState = this._clone(this._state);
       this._firstStartSaved = true;
     }
 
+    // Win/Lose check
     if (this._has2048()) {
       this._status = 'win';
     } else if (!this._anyMovePossible()) {
@@ -289,5 +293,5 @@ class Game {
   }
 }
 
-// ESM export (wymóg z review)
+// Export
 export default Game;

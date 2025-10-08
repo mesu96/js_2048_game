@@ -1,6 +1,6 @@
 'use strict';
 
-// Import ESM (wymóg z review)
+// Import
 import Game from '../modules/Game.class.js';
 
 document.addEventListener('DOMContentLoaded', () => {

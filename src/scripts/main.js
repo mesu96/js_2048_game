@@ -1,6 +1,6 @@
 'use strict';
 
-// Import ESM
+// Import ESM (wymóg z review)
 import Game from '../modules/Game.class.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -120,39 +120,28 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const key = e.key;
-    // Akceptujemy obie formy: 'ArrowRight' i 'Right' itd.
-    const isLeft = key === 'ArrowLeft' || key === 'Left';
-    const isRight = key === 'ArrowRight' || key === 'Right';
-    const isUp = key === 'ArrowUp' || key === 'Up';
-    const isDown = key === 'ArrowDown' || key === 'Down';
-
-    // jeśli to nie strzałka — ignoruj
-    if (!isLeft && !isRight && !isUp && !isDown) {
-      return;
-    }
-
     const prevStatus = game.getStatus();
     let moved = false;
 
-    if (isLeft) {
-      moved = game.moveLeft();
-      e.preventDefault();
-    }
-
-    if (isRight) {
-      moved = game.moveRight();
-      e.preventDefault();
-    }
-
-    if (isUp) {
-      moved = game.moveUp();
-      e.preventDefault();
-    }
-
-    if (isDown) {
-      moved = game.moveDown();
-      e.preventDefault();
+    switch (e.key) {
+      case 'ArrowLeft':
+        moved = game.moveLeft();
+        e.preventDefault();
+        break;
+      case 'ArrowRight':
+        moved = game.moveRight();
+        e.preventDefault();
+        break;
+      case 'ArrowUp':
+        moved = game.moveUp();
+        e.preventDefault();
+        break;
+      case 'ArrowDown':
+        moved = game.moveDown();
+        e.preventDefault();
+        break;
+      default:
+        return;
     }
 
     const nextStatus = game.getStatus();

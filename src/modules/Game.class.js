@@ -170,7 +170,6 @@ class Game {
   }
 
   restart() {
-    // przywraca snapshot z pierwszego startu (status playing)
     this._state = this._clone(this._initialState);
     this._score = 0;
     this._status = 'playing';
